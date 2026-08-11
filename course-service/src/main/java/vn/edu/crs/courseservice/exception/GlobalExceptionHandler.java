@@ -21,11 +21,22 @@ public class GlobalExceptionHandler {
                 .body(Map.of("message", ex.getMessage()));
     }
 
+    // 400 - Du lieu/yeu cau khong hop le
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<Map<String, String>> handleBadRequest(
             IllegalArgumentException ex
     ) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(Map.of("message", ex.getMessage()));
+    }
+
+    // BUOI 3
+    // 409 - Xung dot trang thai, vi du mon hoc da het cho
+    @ExceptionHandler(IllegalStateException.class)
+    public ResponseEntity<Map<String, String>> handleConflict(
+            IllegalStateException ex
+    ) {
+        return ResponseEntity.status(HttpStatus.CONFLICT)
                 .body(Map.of("message", ex.getMessage()));
     }
 
